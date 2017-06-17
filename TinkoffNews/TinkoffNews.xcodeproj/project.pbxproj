@@ -13,6 +13,7 @@
 		114FF6A71EF530460074ECEE /* TinkoffNews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 114FF6A51EF530460074ECEE /* TinkoffNews.xcdatamodeld */; };
 		114FF6A91EF530460074ECEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 114FF6A81EF530460074ECEE /* Assets.xcassets */; };
 		114FF6AC1EF530460074ECEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 114FF6AA1EF530460074ECEE /* LaunchScreen.storyboard */; };
+		E0D233982028937FAC75174B /* Pods_TinkoffNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387AC12792EFC4F9B9C5D850 /* Pods_TinkoffNews.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		114FF6A81EF530460074ECEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		114FF6AB1EF530460074ECEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		114FF6AD1EF530460074ECEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		387AC12792EFC4F9B9C5D850 /* Pods_TinkoffNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinkoffNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BE741C5ED39AE4FF9DDB84A /* Pods-TinkoffNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TinkoffNews/Pods-TinkoffNews.debug.xcconfig"; sourceTree = "<group>"; };
+		F85B9D6A1CF6C8A7DBD81551 /* Pods-TinkoffNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffNews.release.xcconfig"; path = "Pods/Target Support Files/Pods-TinkoffNews/Pods-TinkoffNews.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0D233982028937FAC75174B /* Pods_TinkoffNews.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				114FF69D1EF530460074ECEE /* TinkoffNews */,
 				114FF69C1EF530460074ECEE /* Products */,
+				79E15774CF24DB28DF53DA69 /* Pods */,
+				9B84D95FC93B3E1A4CCE9D77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,23 @@
 			path = TinkoffNews;
 			sourceTree = "<group>";
 		};
+		79E15774CF24DB28DF53DA69 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6BE741C5ED39AE4FF9DDB84A /* Pods-TinkoffNews.debug.xcconfig */,
+				F85B9D6A1CF6C8A7DBD81551 /* Pods-TinkoffNews.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9B84D95FC93B3E1A4CCE9D77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				387AC12792EFC4F9B9C5D850 /* Pods_TinkoffNews.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 114FF6B01EF530460074ECEE /* Build configuration list for PBXNativeTarget "TinkoffNews" */;
 			buildPhases = (
+				46D70B4B7A07AABC2F27769D /* [CP] Check Pods Manifest.lock */,
 				114FF6971EF530460074ECEE /* Sources */,
 				114FF6981EF530460074ECEE /* Frameworks */,
 				114FF6991EF530460074ECEE /* Resources */,
+				28B10F7AE535BD365495346B /* [CP] Embed Pods Frameworks */,
+				B18449ABA3BC87A38450BB70 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -134,6 +161,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		28B10F7AE535BD365495346B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TinkoffNews/Pods-TinkoffNews-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46D70B4B7A07AABC2F27769D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B18449ABA3BC87A38450BB70 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TinkoffNews/Pods-TinkoffNews-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		114FF6971EF530460074ECEE /* Sources */ = {
@@ -263,6 +338,7 @@
 		};
 		114FF6B11EF530460074ECEE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BE741C5ED39AE4FF9DDB84A /* Pods-TinkoffNews.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = U754XV4Y2S;
@@ -276,6 +352,7 @@
 		};
 		114FF6B21EF530460074ECEE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F85B9D6A1CF6C8A7DBD81551 /* Pods-TinkoffNews.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = U754XV4Y2S;
