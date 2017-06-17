@@ -64,14 +64,46 @@
 			isa = PBXGroup;
 			children = (
 				114FF69E1EF530460074ECEE /* AppDelegate.swift */,
-				114FF6A01EF530460074ECEE /* ViewController.swift */,
-				114FF6A21EF530460074ECEE /* Main.storyboard */,
+				11A1F90C1EF532350043BB84 /* PresentationLayer */,
+				11A1F90D1EF532490043BB84 /* ServiceLayer */,
+				11A1F90E1EF532530043BB84 /* CoreLayer */,
 				114FF6A81EF530460074ECEE /* Assets.xcassets */,
-				114FF6AA1EF530460074ECEE /* LaunchScreen.storyboard */,
 				114FF6AD1EF530460074ECEE /* Info.plist */,
 				114FF6A51EF530460074ECEE /* TinkoffNews.xcdatamodeld */,
 			);
 			path = TinkoffNews;
+			sourceTree = "<group>";
+		};
+		11A1F90C1EF532350043BB84 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				114FF6A01EF530460074ECEE /* ViewController.swift */,
+				11A1F90F1EF5326F0043BB84 /* Storyboards */,
+			);
+			name = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		11A1F90D1EF532490043BB84 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		11A1F90E1EF532530043BB84 /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreLayer;
+			sourceTree = "<group>";
+		};
+		11A1F90F1EF5326F0043BB84 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				114FF6A21EF530460074ECEE /* Main.storyboard */,
+				114FF6AA1EF530460074ECEE /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		79E15774CF24DB28DF53DA69 /* Pods */ = {
@@ -383,6 +415,7 @@
 				114FF6B21EF530460074ECEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
