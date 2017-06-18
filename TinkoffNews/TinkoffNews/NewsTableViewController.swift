@@ -21,7 +21,7 @@ class NewsTableViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        HUD.show(.progress, onView: self.view)
+        //HUD.show(.progress, onView: self.view)
     }
     
     fileprivate let estimatedConversationCellRowHeight: CGFloat = 44

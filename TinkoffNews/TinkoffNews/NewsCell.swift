@@ -11,7 +11,7 @@ import UIKit
 
 class NewsCell : UITableViewCell {
     
-    @IBOutlet fileprivate weak var newsHeaderLabel: UILabel!
+    @IBOutlet fileprivate weak var newsHeader: UIWebView!
     @IBOutlet fileprivate weak var viewsCountLabel: UILabel!
 
 }
