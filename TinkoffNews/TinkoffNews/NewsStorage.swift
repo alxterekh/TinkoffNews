@@ -7,32 +7,23 @@
 //
 
 import Foundation
+import CoreData
 
 class NewsStorage {
     
-    static fileprivate let coreDataStack = ServiceAssembly.coreDataStack
-    
     static func saveFetchedNews(_ news: [NewsApiModel],
                                 completionHandler: @escaping (String?) -> Void) {
-        for item in news {
-            let identifier = item.identifier
-            let text = item.text
-            NewsStorage.saveNews(with: identifier,
-                                 text: text,
-                                 completionHandler: completionHandler)
-        }
-    }
-
-    static fileprivate func saveNews(with identifier: String,
-                                     text: String,
-                                     completionHandler: @escaping (String?) -> Void) {
-        if let context = coreDataStack.saveContext {
-            context.perform {
-                let news = News.findOrInsertNews(in: context, with: identifier)
-                news?.text = text
+        if let context = ServiceAssembly.coreDataStack.saveContext {
+            for item in news {
+                let identifier = item.identifier
+                let text = item.text
+                context.perform {
+                    let news = News.findOrInsertNews(in: context, with: identifier)
+                    news?.text = text
+                }
             }
             
-            coreDataStack.performSave(context: context, completionHandler: completionHandler)
+            ServiceAssembly.coreDataStack.performSave(context: context, completionHandler: completionHandler)
         }
     }
 }

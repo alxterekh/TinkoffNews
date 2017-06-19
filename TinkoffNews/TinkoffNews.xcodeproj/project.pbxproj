@@ -165,10 +165,18 @@
 			name = Stack;
 			sourceTree = "<group>";
 		};
-		119874121EF682A300FF254A /* CoreLayer */ = {
+		11743B2E1EF8035C00675275 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				11743B251EF7E99A00675275 /* NewsStorage.swift */,
+			);
+			name = Storage;
+			sourceTree = "<group>";
+		};
+		119874121EF682A300FF254A /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				11743B2E1EF8035C00675275 /* Storage */,
 				119874131EF682C300FF254A /* CoreData */,
 				119874141EF682D200FF254A /* Networking */,
 			);

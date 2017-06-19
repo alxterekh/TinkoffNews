@@ -100,7 +100,6 @@ extension NewsTableViewModel: UITableViewDataSource, UITableViewDelegate {
         cell.configure(with: news)
         cell.selectionStyle = .none
         
-        
         return cell
     }
 }

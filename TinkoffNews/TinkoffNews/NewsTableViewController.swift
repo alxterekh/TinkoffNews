@@ -30,7 +30,6 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
         tableView.estimatedRowHeight = estimatedConversationCellRowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
-        
         newsTableViewModel = NewsTableViewModel(with: tableView)
         newsTableViewModel?.delegate = self
         newsTableViewModel?.fetchNewsList()
