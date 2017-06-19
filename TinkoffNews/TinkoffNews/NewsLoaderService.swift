@@ -17,10 +17,6 @@ class NewsLoaderService {
     
     fileprivate let requestSender: RequestTransmitter = RequestSender()
     
-    init() {
-
-    }
-    
 //    init(requestSender: RequestTransmitter) {
 //        self.requestSender = requestSender
 //    }
@@ -32,8 +28,7 @@ class NewsLoaderService {
             
             switch result {
             case .Success(let news):
-                //save to core data
-                completionHandler(nil)
+                NewsStorage.saveFetchedNews(news, completionHandler: completionHandler)
             case .Fail(let error):
                 completionHandler(error)
             }

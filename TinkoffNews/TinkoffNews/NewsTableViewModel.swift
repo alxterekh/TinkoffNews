@@ -10,46 +10,71 @@ import Foundation
 import UIKit
 import CoreData
 
+protocol NewsListModel: class {
+    weak var delegate: NewsTableViewModelDelegate? { get set }
+    func fetchImagesList()
+}
+
+protocol NewsTableViewModelDelegate: class {
+    func show(error message: String)
+    func handleSuccessfulFetchingNews()
+}
+
 class NewsTableViewModel : NSObject {
 
     fileprivate let newsCellId = "newsCell"
     fileprivate let tableView: UITableView
-    //fileprivate var fetchResultslControllerDelegate: FetchResultslControllerDelegate?
-    //fileprivate let fetchResultsController: NSFetchedResultsController<News>
+    fileprivate var fetchResultslControllerDelegate: FetchResultslControllerDelegate?
+    fileprivate let fetchResultsController: NSFetchedResultsController<News>
     
     let newsLoaderService: NewsLoaderService
+    
+    weak var delegate: NewsTableViewModelDelegate?
     
     init(with tableView: UITableView) {
         self.tableView = tableView
         self.newsLoaderService = NewsLoaderService()
         
-//        let fetchRequest: NSFetchRequest<News> = News.fetchRequest()
-//        let textSortDescriptor = NSSortDescriptor(key:#keyPath(News.text), ascending: false)
-//        fetchRequest.sortDescriptors = [textSortDescriptor]
-//        guard let context = ServiceAssembly.coreDataStack.mainContext else {
-//            print("No cotext for frc!")
-//            abort()
-//        }
-//        
-//        self.fetchResultsController = NSFetchedResultsController<News>(fetchRequest: fetchRequest,
-//                                                                               managedObjectContext: context,
-//                                                                               sectionNameKeyPath:nil,
-//                                                                               cacheName: nil)
+        let fetchRequest: NSFetchRequest<News> = News.fetchRequest()
+        let textSortDescriptor = NSSortDescriptor(key:#keyPath(News.text), ascending: false)
+        fetchRequest.sortDescriptors = [textSortDescriptor]
+        guard let context = ServiceAssembly.coreDataStack.mainContext else {
+            print("No cotext for frc!")
+            abort()
+        }
+        
+        self.fetchResultsController = NSFetchedResultsController<News>(fetchRequest: fetchRequest,
+                                                                               managedObjectContext: context,
+                                                                               sectionNameKeyPath:nil,
+                                                                               cacheName: nil)
         super.init()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-//        self.fetchResultslControllerDelegate = FetchResultslControllerDelegate(with: self.tableView)
-//        self.fetchResultsController.delegate = fetchResultslControllerDelegate
-//        performFetch()
+        self.fetchResultslControllerDelegate = FetchResultslControllerDelegate(with: self.tableView)
+        self.fetchResultsController.delegate = fetchResultslControllerDelegate
+        performFetch()
     }
     
-//    fileprivate func performFetch() {
-//        do {
-//            try self.fetchResultsController.performFetch()
-//        } catch {
-//            print("Error fetching: \(error)")
-//        }
-//    }
+    fileprivate func performFetch() {
+        do {
+            try self.fetchResultsController.performFetch()
+        } catch {
+            print("Error fetching: \(error)")
+        }
+    }
+    
+    ///
+    
+    func fetchNewsList() {
+        newsLoaderService.loadNewsHeaderList {
+            if let error = $0 {
+               self.delegate?.show(error: error)
+            }
+            else {
+                self.delegate?.handleSuccessfulFetchingNews()
+            }
+        }
+    }
 }
 
 extension NewsTableViewModel: UITableViewDataSource, UITableViewDelegate {
@@ -58,10 +83,9 @@ extension NewsTableViewModel: UITableViewDataSource, UITableViewDelegate {
         // передать id и запрос -> service
     }
     
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        //guard  let sectionsCount = fetchResultsController.sections?.count else { return 0 }
-        return 1
+        guard let sectionsCount = fetchResultsController.sections?.count else { return 0 }
+        return sectionsCount
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,14 +93,14 @@ extension NewsTableViewModel: UITableViewDataSource, UITableViewDelegate {
     }
     
     func numberOfRows(inSection section: Int) -> Int {
-        //guard let sections = fetchResultsController.sections?[section] else { return 0 }
-        return 5
+        guard let sections = fetchResultsController.sections?[section] else { return 0 }
+        return sections.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:newsCellId, for:indexPath) as! NewsCell
-        //let news = fetchResultsController.object(at: indexPath)
-        //cell.configure(with: conversation)
+        let news = fetchResultsController.object(at: indexPath)
+        //cell.configure(with: news)
         cell.selectionStyle = .none
         
         

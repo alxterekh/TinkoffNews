@@ -10,17 +10,29 @@ import Foundation
 
 class NewsStorage {
     
-//    if let context = coreDataStack.saveContext {
-//        let message = createMessage(with: text, context: context)
-//        message.isOutgoing = true
-//        message.isUnread = true
-//        if let conversationId = conversation.conversationId,
-//            let conversation = Conversation.findOrInsertConversation(in: context, with: conversationId) {
-//            message.conversation = conversation
-//            conversation.lastMessage = message
-//            conversation.addToMessages(message)
-//            coreDataStack.performSave(context: context){_,_ in }
-//        }
-//    }
+    static fileprivate let coreDataStack = ServiceAssembly.coreDataStack
     
+    static func saveFetchedNews(_ news: [NewsApiModel],
+                                completionHandler: @escaping (String?) -> Void) {
+        for item in news {
+            let identifier = item.identifier
+            let text = item.text
+            NewsStorage.saveNews(with: identifier,
+                                 text: text,
+                                 completionHandler: completionHandler)
+        }
+    }
+
+    static fileprivate func saveNews(with identifier: String,
+                                     text: String,
+                                     completionHandler: @escaping (String?) -> Void) {
+        if let context = coreDataStack.saveContext {
+            context.perform {
+                let news = News.findOrInsertNews(in: context, with: identifier)
+                news?.text = text
+            }
+            
+            coreDataStack.performSave(context: context, completionHandler: completionHandler)
+        }
+    }
 }

@@ -12,7 +12,7 @@ import CoreData
 protocol CoreDataStackContextProvider {
     var mainContext : NSManagedObjectContext? { get }
     var saveContext : NSManagedObjectContext? { get }
-    func performSave(context: NSManagedObjectContext, completionHandler: @escaping (Bool, Error?) -> Void)
+    func performSave(context: NSManagedObjectContext, completionHandler: @escaping (String?) -> Void)
 }
 
 class CoreDataStack : CoreDataStackContextProvider {
@@ -123,7 +123,7 @@ class CoreDataStack : CoreDataStackContextProvider {
     
     // MARK: -
     
-    func performSave(context: NSManagedObjectContext, completionHandler: @escaping (Bool, Error?) -> Void) {
+    func performSave(context: NSManagedObjectContext, completionHandler: @escaping (String?) -> Void) {
         if context.hasChanges {
             context.perform {
                 [weak self] in
@@ -132,7 +132,7 @@ class CoreDataStack : CoreDataStackContextProvider {
                     try context.save()
                 }
                 catch {
-                    DispatchQueue.main.async { completionHandler(false, error) }
+                    DispatchQueue.main.async { completionHandler(error.localizedDescription) }
                     print("Context save error: \(error)")
                 }
                 
@@ -140,12 +140,12 @@ class CoreDataStack : CoreDataStackContextProvider {
                     self?.performSave(context: parent, completionHandler: completionHandler)
                 }
                 else {
-                    DispatchQueue.main.async { completionHandler(true, nil) }
+                    DispatchQueue.main.async { completionHandler(nil) }
                 }
             }
         }
         else {
-            completionHandler(true, nil)
+            completionHandler(nil)
         }
     }
     
