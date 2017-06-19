@@ -2,12 +2,13 @@
 //  News+CoreDataProperties.swift
 //  TinkoffNews
 //
-//  Created by Alexander on 18/06/2017.
+//  Created by Alexander on 19/06/2017.
 //  Copyright © 2017 Alexander Terekhov. All rights reserved.
 //
 
 import Foundation
 import CoreData
+
 
 extension News {
 
@@ -15,7 +16,7 @@ extension News {
         return NSFetchRequest<News>(entityName: "News")
     }
 
-    @NSManaged public var identifier: String?
+    @NSManaged public var id: String?
     @NSManaged public var text: String?
 
 }

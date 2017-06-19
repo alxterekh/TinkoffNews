@@ -9,7 +9,7 @@
 import Foundation
 
 class NewsHeaderListRequest : Requestable {
-    fileprivate let baseUrl: String = "https://api.tinkoff.ru/v1/news?first=20&last=40"
+    fileprivate let baseUrl: String = "https://api.tinkoff.ru/v1/news?first=20&last=100"
     
     // MARK: - Initialization
     

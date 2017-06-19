@@ -54,6 +54,11 @@ class NewsTableViewModel : NSObject {
 
 extension NewsTableViewModel: UITableViewDataSource, UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // передать id и запрос -> service
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         //guard  let sectionsCount = fetchResultsController.sections?.count else { return 0 }
         return 1
@@ -73,6 +78,7 @@ extension NewsTableViewModel: UITableViewDataSource, UITableViewDelegate {
         //let news = fetchResultsController.object(at: indexPath)
         //cell.configure(with: conversation)
         cell.selectionStyle = .none
+        
         
         return cell
     }

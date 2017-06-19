@@ -18,24 +18,25 @@ class NewsLoaderService {
     fileprivate let requestSender: RequestTransmitter = RequestSender()
     
     init() {
-        loadNewsHeaderList()
+
     }
     
 //    init(requestSender: RequestTransmitter) {
 //        self.requestSender = requestSender
 //    }
     
-    func loadNewsHeaderList() {
+    func loadNewsHeaderList(completionHandler: @escaping (String?) -> Void) {
         let config = RequestsFactory.NewsHeaderListConfig()
         requestSender.send(config: config) {
             (result: Result<[NewsApiModel]>) in
             
-//            switch result {
-//            case .Success(let images):
-//                completionHandler(images, nil)
-//            case .Fail(let error):
-//                completionHandler(nil, error)
-//            }
+            switch result {
+            case .Success(let news):
+                //save to core data
+                completionHandler(nil)
+            case .Fail(let error):
+                completionHandler(error)
+            }
         }
     }
 }
