@@ -11,12 +11,11 @@ import UIKit
 
 class NewsCell : UITableViewCell {
     
-    @IBOutlet weak var newsHeader: UIWebView!
+    @IBOutlet weak var newsHeaderLabel: UILabel!
     @IBOutlet fileprivate weak var viewsCountLabel: UILabel!
     
-    override func draw(_ rect: CGRect) {
-        newsHeader.loadHTMLString("<html><body><p>Hello!</p></body></html>", baseURL: nil)
+    func configure(with news: News) {
+        newsHeaderLabel.text = news.text
     }
-    
 }
 

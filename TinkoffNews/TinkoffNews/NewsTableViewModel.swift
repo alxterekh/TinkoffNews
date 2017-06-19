@@ -34,7 +34,6 @@ class NewsTableViewModel : NSObject {
     init(with tableView: UITableView) {
         self.tableView = tableView
         self.newsLoaderService = NewsLoaderService()
-        
         let fetchRequest: NSFetchRequest<News> = News.fetchRequest()
         let textSortDescriptor = NSSortDescriptor(key:#keyPath(News.text), ascending: false)
         fetchRequest.sortDescriptors = [textSortDescriptor]
@@ -62,9 +61,7 @@ class NewsTableViewModel : NSObject {
             print("Error fetching: \(error)")
         }
     }
-    
-    ///
-    
+        
     func fetchNewsList() {
         newsLoaderService.loadNewsHeaderList {
             if let error = $0 {
@@ -80,7 +77,7 @@ class NewsTableViewModel : NSObject {
 extension NewsTableViewModel: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // передать id и запрос -> service
+        //
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,7 +97,7 @@ extension NewsTableViewModel: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:newsCellId, for:indexPath) as! NewsCell
         let news = fetchResultsController.object(at: indexPath)
-        //cell.configure(with: news)
+        cell.configure(with: news)
         cell.selectionStyle = .none
         
         

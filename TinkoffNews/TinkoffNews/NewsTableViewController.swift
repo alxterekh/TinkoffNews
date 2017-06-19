@@ -9,7 +9,7 @@
 import UIKit
 import PKHUD
 
-class NewsTableViewController: UIViewController {
+class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     
@@ -21,7 +21,7 @@ class NewsTableViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //HUD.show(.progress, onView: self.view)
+        HUD.show(.progress, onView: self.view)
     }
     
     fileprivate let estimatedConversationCellRowHeight: CGFloat = 44
@@ -30,10 +30,13 @@ class NewsTableViewController: UIViewController {
         tableView.estimatedRowHeight = estimatedConversationCellRowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
+        
         newsTableViewModel = NewsTableViewModel(with: tableView)
+        newsTableViewModel?.delegate = self
+        newsTableViewModel?.fetchNewsList()
     }
     
-    func setup(dataSource: [String]) {
+    func handleSuccessfulFetchingNews() {
         DispatchQueue.main.async {
             HUD.flash(.success, onView: self.view)
         }
