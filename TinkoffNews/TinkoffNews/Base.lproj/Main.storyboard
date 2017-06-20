@@ -39,23 +39,22 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <webView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tm2-9S-dWT">
-                                                    <rect key="frame" x="10" y="-2.5" width="324.5" height="40"/>
+                                                    <rect key="frame" x="10" y="6" width="324.5" height="31.5"/>
                                                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="X28-OF-kD1"/>
-                                                    </constraints>
                                                 </webView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="tm2-9S-dWT" firstAttribute="top" secondItem="Dt8-11-eIT" secondAttribute="top" constant="6" id="0aQ-YS-wTM"/>
+                                                <constraint firstItem="pfp-Zy-2sF" firstAttribute="leading" secondItem="tm2-9S-dWT" secondAttribute="trailing" constant="10" id="EYk-Jd-4ft"/>
+                                                <constraint firstAttribute="bottom" secondItem="tm2-9S-dWT" secondAttribute="bottom" constant="6" id="HLv-uz-Wdv"/>
                                                 <constraint firstItem="tm2-9S-dWT" firstAttribute="leading" secondItem="Dt8-11-eIT" secondAttribute="leading" constant="10" id="Mf1-16-zuc"/>
-                                                <constraint firstAttribute="bottom" secondItem="tm2-9S-dWT" secondAttribute="bottom" constant="6" id="Z87-Vu-rab"/>
                                                 <constraint firstAttribute="trailing" secondItem="pfp-Zy-2sF" secondAttribute="trailing" constant="20" id="iuM-vy-1yd"/>
                                                 <constraint firstItem="pfp-Zy-2sF" firstAttribute="centerY" secondItem="Dt8-11-eIT" secondAttribute="centerY" id="scy-kF-OAL"/>
-                                                <constraint firstItem="pfp-Zy-2sF" firstAttribute="leading" secondItem="tm2-9S-dWT" secondAttribute="trailing" constant="10" id="yih-8g-uaj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="newsHeader" destination="tm2-9S-dWT" id="70P-Hu-FZo"/>
+                                            <outlet property="trailingSpaceFromNewsHeaderWebViewToViewsCountLabel" destination="EYk-Jd-4ft" id="3g2-ua-4Eo"/>
                                             <outlet property="viewsCountLabel" destination="pfp-Zy-2sF" id="nFb-6X-Rb7"/>
                                             <segue destination="4Sh-ur-GPa" kind="show" identifier="NewsContent" id="D4t-oT-uW8"/>
                                         </connections>

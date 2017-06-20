@@ -29,9 +29,6 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
         newsTableViewModel = NewsTableViewModel(with: tableView)
         newsTableViewModel?.delegate = self
         newsTableViewModel?.fetchNewsList()
-        DispatchQueue.main.async {
-            HUD.show(.progress, onView: self.view)
-        }
     }
     
     func handleSuccessfulFetchingNews() {
