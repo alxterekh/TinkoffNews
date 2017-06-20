@@ -32,9 +32,9 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
     }
     
     func handleSuccessfulFetchingNews() {
-        DispatchQueue.main.async {
-            HUD.flash(.success, onView: self.view)
-        }
+//        DispatchQueue.main.async {
+//            HUD.flash(.success, onView: self.view)
+//        }
     }
     
     func show(error message: String) {
