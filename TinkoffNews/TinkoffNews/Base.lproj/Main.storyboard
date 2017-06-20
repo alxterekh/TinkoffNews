@@ -32,13 +32,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfp-Zy-2sF">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfp-Zy-2sF">
                                                     <rect key="frame" x="344.5" y="11.5" width="10.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dad-Ni-HQH">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dad-Ni-HQH">
                                                     <rect key="frame" x="10" y="6" width="33.5" height="31.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -57,7 +57,7 @@
                                         <connections>
                                             <outlet property="newsHeaderLabel" destination="dad-Ni-HQH" id="xhF-B1-3Jz"/>
                                             <outlet property="viewsCountLabel" destination="pfp-Zy-2sF" id="nFb-6X-Rb7"/>
-                                            <segue destination="4Sh-ur-GPa" kind="show" id="D4t-oT-uW8"/>
+                                            <segue destination="4Sh-ur-GPa" kind="show" identifier="NewsContent" id="D4t-oT-uW8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -102,7 +102,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="00p-dl-GK6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DMA-0V-Igl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DMA-0V-Igl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

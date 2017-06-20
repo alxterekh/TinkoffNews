@@ -10,8 +10,8 @@ import Foundation
 
 class RequestsFactory {
     
-    static func NewsHeaderListConfig() -> RequestConfig<[NewsApiModel]> {
-        let request = NewsHeaderListRequest()
+    static func NewsHeaderListConfig(first: Int, last: Int) -> RequestConfig<[NewsApiModel]> {
+        let request = NewsHeaderListRequest(first: first, last: last)
         return RequestConfig<[NewsApiModel]>(request:request, parser: NewsHeaderListParser())
     }
     

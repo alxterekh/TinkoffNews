@@ -19,11 +19,7 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
         super.viewDidLoad()
         setup()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        HUD.show(.progress, onView: self.view)
-    }
-    
+
     fileprivate let estimatedConversationCellRowHeight: CGFloat = 44
     
     fileprivate func setup() {
@@ -33,6 +29,9 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
         newsTableViewModel = NewsTableViewModel(with: tableView)
         newsTableViewModel?.delegate = self
         newsTableViewModel?.fetchNewsList()
+        DispatchQueue.main.async {
+            HUD.show(.progress, onView: self.view)
+        }
     }
     
     func handleSuccessfulFetchingNews() {
@@ -44,6 +43,14 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
     func show(error message: String) {
         DispatchQueue.main.async {
             HUD.flash(.labeledError(title: message, subtitle: nil), onView: self.view)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NewsContent",
+            let vc = segue.destination as? NewsContentViewController,
+            let sender = sender as? NewsCell {
+            vc.newsIdentifier = sender.identifier
         }
     }
 }

@@ -9,12 +9,19 @@
 import Foundation
 
 class NewsHeaderListRequest : Requestable {
-    fileprivate let baseUrl: String = "https://api.tinkoff.ru/v1/news?first=20&last=100"
+    fileprivate let baseUrl: String = "https://api.tinkoff.ru/v1/news?"
+    fileprivate let firstItemIndex: Int
+    fileprivate let lastItemIndex: Int
     
     // MARK: - Initialization
     
+    init(first: Int, last: Int) {
+        firstItemIndex = first
+        lastItemIndex = last
+    }
+    
     fileprivate var urlString: String {
-        return baseUrl
+        return baseUrl + "first=\(firstItemIndex)&last=\(lastItemIndex)"
     }
     
     // MARK: -

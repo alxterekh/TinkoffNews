@@ -11,6 +11,32 @@ import CoreData
 
 public class News: NSManagedObject {
     
+    static func performNewsFetchRequest(identifier: String?, in context: NSManagedObjectContext) -> News? {
+        var news: News?
+        guard let identifier = identifier else {
+            print("No news id!")
+            return nil
+        }
+        
+        guard let fetchRequest = News.fetchRequestNews(in: context, identifier: identifier) else {
+            print("No fetch request for news with id!")
+            return nil
+        }
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let foundNews = results.first {
+                news = foundNews
+            }
+        }
+        catch {
+            print("Failed to fetch News")
+        }
+        
+        return news
+    }
+
+    
     fileprivate static func fetchRequestNews(in context: NSManagedObjectContext, identifier: String) -> NSFetchRequest<News>? {
         let templateName = "NewsWithId"
         guard let model = context.persistentStoreCoordinator?.managedObjectModel,

@@ -12,5 +12,11 @@ import UIKit
 class ServiceAssembly {
     
     static let coreDataStack = CoreDataStack()
+    
+    static var newsLoaderService = { () -> NewsLoaderService in
+        let requestSender = RequestSender()
+        
+        return NewsLoaderService(requestSender: requestSender)
+    }()
         
 }

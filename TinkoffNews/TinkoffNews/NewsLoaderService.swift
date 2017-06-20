@@ -15,14 +15,14 @@ protocol NewsLoader {
 
 class NewsLoaderService {
     
-    fileprivate let requestSender: RequestTransmitter = RequestSender()
+    fileprivate let requestSender: RequestTransmitter
     
-//    init(requestSender: RequestTransmitter) {
-//        self.requestSender = requestSender
-//    }
+    init(requestSender: RequestTransmitter) {
+        self.requestSender = requestSender
+    }
     
-    func loadNewsHeaderList(completionHandler: @escaping (String?) -> Void) {
-        let config = RequestsFactory.NewsHeaderListConfig()
+    func loadNewsHeaderList(first: Int, last: Int, completionHandler: @escaping (String?) -> Void) {
+        let config = RequestsFactory.NewsHeaderListConfig(first: first, last: last)
         requestSender.send(config: config) {
             (result: Result<[NewsApiModel]>) in
             
@@ -32,6 +32,22 @@ class NewsLoaderService {
             case .Fail(let error):
                 completionHandler(error)
             }
+        }
+    }
+    
+    func loadNewsContent(newsIdentifier: String, completionHandler: @escaping (String? ,String?) -> Void) {
+        let config = RequestsFactory.NewsContentConfig(for: newsIdentifier)
+        requestSender.send(config: config) {
+            (result: Result<NewsContentApiModel>) in
+            DispatchQueue.main.async {
+                switch result {
+                case .Success(let content):
+                    completionHandler(content.text, nil)
+                case .Fail(let error):
+                    completionHandler(nil, error)
+                }
+            }
+            
         }
     }
 }

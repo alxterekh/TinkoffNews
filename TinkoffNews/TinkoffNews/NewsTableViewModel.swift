@@ -31,11 +31,13 @@ class NewsTableViewModel : NSObject {
     
     weak var delegate: NewsTableViewModelDelegate?
     
+    fileprivate let batchSize = 20
+    
     init(with tableView: UITableView) {
         self.tableView = tableView
-        self.newsLoaderService = NewsLoaderService()
+        self.newsLoaderService = ServiceAssembly.newsLoaderService
         let fetchRequest: NSFetchRequest<News> = News.fetchRequest()
-        let textSortDescriptor = NSSortDescriptor(key:#keyPath(News.text), ascending: false)
+        let textSortDescriptor = NSSortDescriptor(key:#keyPath(News.orderIndex), ascending: true)
         fetchRequest.sortDescriptors = [textSortDescriptor]
         guard let context = ServiceAssembly.coreDataStack.mainContext else {
             print("No cotext for frc!")
@@ -61,23 +63,40 @@ class NewsTableViewModel : NSObject {
             print("Error fetching: \(error)")
         }
     }
+    
+    fileprivate var first = 0
+    fileprivate var last = 20
         
     func fetchNewsList() {
-        newsLoaderService.loadNewsHeaderList {
+        newsLoaderService.loadNewsHeaderList(first: first, last: last) {
             if let error = $0 {
                self.delegate?.show(error: error)
             }
             else {
                 self.delegate?.handleSuccessfulFetchingNews()
+                self.first += self.batchSize
+                self.last += self.batchSize
             }
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollViewDidScrollToBottom(scrollView) {
+            fetchNewsList()
+        }
+    }
+    
+    fileprivate func scrollViewDidScrollToBottom(_ scrollView: UIScrollView) -> Bool {
+        let diff = roundf(Float(scrollView.contentSize.height-scrollView.frame.size.height))
+        return scrollView.contentOffset.y == CGFloat(diff)
     }
 }
 
 extension NewsTableViewModel: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        let cell = tableView.cellForRow(at: indexPath) as! NewsCell
+        cell.markAsViewed()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

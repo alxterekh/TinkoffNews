@@ -2,7 +2,7 @@
 //  News+CoreDataProperties.swift
 //  TinkoffNews
 //
-//  Created by Alexander on 19/06/2017.
+//  Created by Alexander on 20/06/2017.
 //  Copyright © 2017 Alexander Terekhov. All rights reserved.
 //
 
@@ -18,5 +18,7 @@ extension News {
 
     @NSManaged public var id: String?
     @NSManaged public var text: String?
+    @NSManaged public var orderIndex: Int64
+    @NSManaged public var content: String?
 
 }

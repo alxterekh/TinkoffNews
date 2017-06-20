@@ -15,7 +15,7 @@ struct NewsContentApiModel {
 
 class NewsContentParser : Parser<NewsContentApiModel> {
     fileprivate let payLoadKey = "payload"
-    fileprivate let contentKey = "id"
+    fileprivate let contentKey = "content"
     
     override func parse(data: Data) -> NewsContentApiModel? {
         let json = JSON(data: data)

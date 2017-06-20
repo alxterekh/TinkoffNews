@@ -11,11 +11,21 @@ import UIKit
 
 class NewsCell : UITableViewCell {
     
-    @IBOutlet weak var newsHeaderLabel: UILabel!
+    @IBOutlet fileprivate weak var newsHeaderLabel: UILabel!
     @IBOutlet fileprivate weak var viewsCountLabel: UILabel!
+    
+    fileprivate var viewsCount = 0
+    
+    var identifier: String?
     
     func configure(with news: News) {
         newsHeaderLabel.text = news.text
+        identifier = news.id
+    }
+    
+    func markAsViewed() {
+        viewsCount += 1
+        viewsCountLabel.text = "\(viewsCount)"
     }
 }
 
