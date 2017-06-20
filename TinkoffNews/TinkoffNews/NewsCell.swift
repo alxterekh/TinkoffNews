@@ -13,7 +13,7 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
     
     @IBOutlet fileprivate weak var newsHeader: UIWebView!
     @IBOutlet fileprivate weak var viewsCountLabel: UILabel!
-    @IBOutlet weak var trailingSpaceFromNewsHeaderWebViewToViewsCountLabel: NSLayoutConstraint!
+    @IBOutlet weak var trailingViewsCountLabelToSuperview: NSLayoutConstraint!
     
     var identifier: String?
     
@@ -63,15 +63,15 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
             newsHeader.isOpaque = false
             
             self.addSubview(newsHeader)
-            self.addConstraint(NSLayoutConstraint(item: newsHeader, attribute: .topMargin, relatedBy: .equal, toItem: self, attribute: .topMargin, multiplier: 1, constant: 8))
-            self.addConstraint(NSLayoutConstraint(item: newsHeader, attribute: .bottomMargin, relatedBy: .equal, toItem: self, attribute: .bottomMargin, multiplier: 1, constant: 8))
+            self.addConstraint(NSLayoutConstraint(item: newsHeader, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 8))
+            self.addConstraint(NSLayoutConstraint(item: newsHeader, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 8))
         }
         
         return fittingSize
     }
     
     fileprivate func webViewWidth(_ cellWidth: CGFloat) -> CGFloat {
-        return cellWidth - 100
+        return cellWidth - viewsCountLabel.frame.size.width - trailingViewsCountLabelToSuperview.constant
     }
     
     fileprivate func totalCellHeight(with newsHeaderWebViewHeight: CGFloat)  -> CGFloat{
