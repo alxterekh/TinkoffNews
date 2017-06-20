@@ -5,9 +5,10 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="orderIndex" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="viewsCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <fetchRequest name="NewsWithId" entity="News" predicateString="id == $identifier"/>
     <elements>
-        <element name="News" positionX="-45" positionY="0" width="128" height="105"/>
+        <element name="News" positionX="-45" positionY="0" width="128" height="120"/>
     </elements>
 </model>

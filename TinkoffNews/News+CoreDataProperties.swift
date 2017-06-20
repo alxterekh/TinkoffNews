@@ -20,5 +20,6 @@ extension News {
     @NSManaged public var text: String?
     @NSManaged public var orderIndex: Int64
     @NSManaged public var content: String?
+    @NSManaged public var viewsCount: Int16
 
 }

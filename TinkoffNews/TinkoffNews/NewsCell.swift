@@ -24,19 +24,37 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
         super.draw(rect)
     }
     
+    fileprivate var news: News?
+    
     func configure(with news: News) {
         guard let text = news.text else {
             print("no text")
             return
         }
-        
+        self.news = news
         content = text
         identifier = news.id
+        viewsCountLabel.text = "\(news.viewsCount)"
     }
     
     func markAsViewed() {
         viewsCount += 1
         viewsCountLabel.text = "\(viewsCount)"
+        
+//        if let saveContext = ServiceAssembly.coreDataStack.saveContext,
+//        let newsOnSaveContext = saveContext.object(with: news!.objectID) as? News {
+//            
+//            //newsOnSaveContext
+//            ServiceAssembly.coreDataStack.performSave(context: saveContext) {
+//                _, _ in
+//            }
+    }
+    
+    
+    func webView(_ webView: UIWebView,
+                 shouldStartLoadWith request: URLRequest,
+                 navigationType: UIWebViewNavigationType) -> Bool {
+        return navigationType != .linkClicked
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
@@ -75,7 +93,7 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
     }
     
     fileprivate func totalCellHeight(with newsHeaderWebViewHeight: CGFloat)  -> CGFloat{
-        return newsHeaderWebViewHeight
+        return newsHeaderWebViewHeight + 16
     }
 }
 

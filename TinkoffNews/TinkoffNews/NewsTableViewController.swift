@@ -47,6 +47,7 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
         if segue.identifier == "NewsContent",
             let vc = segue.destination as? NewsContentViewController,
             let sender = sender as? NewsCell {
+            sender.markAsViewed()
             vc.newsIdentifier = sender.identifier
         }
     }
