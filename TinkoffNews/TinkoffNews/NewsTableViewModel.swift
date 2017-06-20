@@ -65,17 +65,15 @@ class NewsTableViewModel : NSObject {
     }
     
     fileprivate var first = 0
-    fileprivate var last = 20
         
     func fetchNewsList() {
-        newsLoaderService.loadNewsHeaderList(first: first, last: last) {
+        newsLoaderService.loadNewsHeaderList(first: first, last: first + batchSize) {
             if let error = $0 {
                self.delegate?.show(error: error)
             }
             else {
                 self.delegate?.handleSuccessfulFetchingNews()
                 self.first += self.batchSize
-                self.last += self.batchSize
             }
         }
     }

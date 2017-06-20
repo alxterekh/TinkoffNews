@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 struct NewsContentApiModel {
-    let text: String
+    let content: String
 }
 
 class NewsContentParser : Parser<NewsContentApiModel> {
@@ -24,7 +24,7 @@ class NewsContentParser : Parser<NewsContentApiModel> {
             return nil
         }
         
-        return NewsContentApiModel(text: content)
+        return NewsContentApiModel(content: content)
     }
 }
 

@@ -38,24 +38,24 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dad-Ni-HQH">
-                                                    <rect key="frame" x="10" y="6" width="33.5" height="31.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <webView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tm2-9S-dWT">
+                                                    <rect key="frame" x="10" y="-2.5" width="324.5" height="40"/>
+                                                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="X28-OF-kD1"/>
+                                                    </constraints>
+                                                </webView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="dad-Ni-HQH" secondAttribute="bottom" constant="6" id="5fC-uQ-f6w"/>
-                                                <constraint firstItem="pfp-Zy-2sF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dad-Ni-HQH" secondAttribute="trailing" constant="20" id="R7V-Rf-p8K"/>
+                                                <constraint firstItem="tm2-9S-dWT" firstAttribute="leading" secondItem="Dt8-11-eIT" secondAttribute="leading" constant="10" id="Mf1-16-zuc"/>
+                                                <constraint firstAttribute="bottom" secondItem="tm2-9S-dWT" secondAttribute="bottom" constant="6" id="Z87-Vu-rab"/>
                                                 <constraint firstAttribute="trailing" secondItem="pfp-Zy-2sF" secondAttribute="trailing" constant="20" id="iuM-vy-1yd"/>
-                                                <constraint firstItem="dad-Ni-HQH" firstAttribute="top" secondItem="Dt8-11-eIT" secondAttribute="top" constant="6" id="nCi-wE-hKx"/>
                                                 <constraint firstItem="pfp-Zy-2sF" firstAttribute="centerY" secondItem="Dt8-11-eIT" secondAttribute="centerY" id="scy-kF-OAL"/>
-                                                <constraint firstItem="dad-Ni-HQH" firstAttribute="leading" secondItem="Dt8-11-eIT" secondAttribute="leading" constant="10" id="tcR-5b-LGt"/>
+                                                <constraint firstItem="pfp-Zy-2sF" firstAttribute="leading" secondItem="tm2-9S-dWT" secondAttribute="trailing" constant="10" id="yih-8g-uaj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="newsHeaderLabel" destination="dad-Ni-HQH" id="xhF-B1-3Jz"/>
+                                            <outlet property="newsHeader" destination="tm2-9S-dWT" id="70P-Hu-FZo"/>
                                             <outlet property="viewsCountLabel" destination="pfp-Zy-2sF" id="nFb-6X-Rb7"/>
                                             <segue destination="4Sh-ur-GPa" kind="show" identifier="NewsContent" id="D4t-oT-uW8"/>
                                         </connections>

@@ -42,12 +42,11 @@ class NewsLoaderService {
             DispatchQueue.main.async {
                 switch result {
                 case .Success(let content):
-                    completionHandler(content.text, nil)
+                    completionHandler(content.content, nil)
                 case .Fail(let error):
                     completionHandler(nil, error)
                 }
             }
-            
         }
     }
 }

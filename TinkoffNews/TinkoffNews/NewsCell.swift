@@ -11,7 +11,7 @@ import UIKit
 
 class NewsCell : UITableViewCell {
     
-    @IBOutlet fileprivate weak var newsHeaderLabel: UILabel!
+    @IBOutlet fileprivate weak var newsHeader: UIWebView!
     @IBOutlet fileprivate weak var viewsCountLabel: UILabel!
     
     fileprivate var viewsCount = 0
@@ -19,7 +19,12 @@ class NewsCell : UITableViewCell {
     var identifier: String?
     
     func configure(with news: News) {
-        newsHeaderLabel.text = news.text
+        guard let text = news.text else {
+            print("no text")
+            return
+        }
+        
+        newsHeader.loadHTMLString(text, baseURL: nil)
         identifier = news.id
     }
     
