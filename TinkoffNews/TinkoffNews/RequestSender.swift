@@ -10,7 +10,16 @@ import Foundation
 
 class RequestSender: RequestTransmitter {
     
-    let session = URLSession.shared
+    fileprivate let timeout = 12
+    
+    let session: URLSession
+    
+    init() {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = TimeInterval(timeout)
+        configuration.timeoutIntervalForResource = TimeInterval(timeout)
+        session = URLSession(configuration: configuration)
+    }
     
     func send<T>(config: RequestConfig<T>, completionHandler: @escaping (Result<T>) -> Void) {
         

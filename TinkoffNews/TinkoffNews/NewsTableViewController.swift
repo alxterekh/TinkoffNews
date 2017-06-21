@@ -20,7 +20,7 @@ class NewsTableViewController: UIViewController {
         setup()
     }
 
-    fileprivate let estimatedConversationCellRowHeight: CGFloat = 44
+    fileprivate let estimatedConversationCellRowHeight: CGFloat = 60
     
     fileprivate func setup() {
         tableView.estimatedRowHeight = estimatedConversationCellRowHeight
@@ -56,8 +56,12 @@ extension NewsTableViewController: NewsTableViewModelDelegate {
     
     func show(error message: String) {
         DispatchQueue.main.async {
-            HUD.flash(.labeledError(title: message, subtitle: nil), onView: self.view)
+            let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
+    
 }
 

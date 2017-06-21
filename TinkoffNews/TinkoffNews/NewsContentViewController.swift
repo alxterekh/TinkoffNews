@@ -48,7 +48,7 @@ class NewsContentViewController: UIViewController {
         newsLoaderService.loadNewsContent(newsIdentifier: identifier) {
             if let error = $1 {
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: error, subtitle: nil), onView: self.view)
+                    self.showError(with: error)
                 }
             }
             else if let content = $0 {
@@ -58,5 +58,12 @@ class NewsContentViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    fileprivate func showError(with message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
