@@ -92,7 +92,7 @@ class NewsTableViewModel : NSObject {
     
     fileprivate func scrollViewDidScrollToBottom(_ scrollView: UIScrollView) -> Bool {
         let diff = roundf(Float(scrollView.contentSize.height-scrollView.frame.size.height))
-        return scrollView.contentOffset.y - CGFloat(diff) < 0.1
+        return scrollView.contentOffset.y == CGFloat(diff) 
     }
 }
 
