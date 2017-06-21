@@ -91,8 +91,10 @@ class NewsTableViewModel : NSObject, NewsListModel {
     }
     
     fileprivate func scrollViewDidScrollToBottom(_ scrollView: UIScrollView) -> Bool {
+        let bottomMargin: CGFloat = 20
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
-        return bottomEdge >= scrollView.contentSize.height
+        
+        return bottomEdge >= scrollView.contentSize.height - bottomMargin
     }
 }
 
