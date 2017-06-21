@@ -20,7 +20,7 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
         setup()
     }
 
-    fileprivate let estimatedConversationCellRowHeight: CGFloat = 1000
+    fileprivate let estimatedConversationCellRowHeight: CGFloat = 500
     
     fileprivate func setup() {
         tableView.estimatedRowHeight = estimatedConversationCellRowHeight
@@ -32,9 +32,15 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
     }
     
     func handleSuccessfulFetchingNews() {
-//        DispatchQueue.main.async {
-//            HUD.flash(.success, onView: self.view)
-//        }
+        DispatchQueue.main.async {
+            HUD.hide(animated: true)
+        }
+    }
+    
+    func kek() {
+        DispatchQueue.main.async {
+            HUD.show(.progress, onView: self.view)
+        }
     }
     
     func show(error message: String) {

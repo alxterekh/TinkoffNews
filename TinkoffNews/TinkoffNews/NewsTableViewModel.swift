@@ -18,6 +18,7 @@ protocol NewsListModel: class {
 protocol NewsTableViewModelDelegate: class {
     func show(error message: String)
     func handleSuccessfulFetchingNews()
+    func kek()
 }
 
 class NewsTableViewModel : NSObject {
@@ -71,6 +72,7 @@ class NewsTableViewModel : NSObject {
     func fetchNewsList() {
         if flag {
             flag = false
+            delegate?.kek()
             newsLoaderService.loadNewsHeaderList(first: first, last: first + batchSize) {
                 if let error = $0 {
                     self.delegate?.show(error: error)
