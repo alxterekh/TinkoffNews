@@ -68,9 +68,7 @@ public class News: NSManagedObject {
         
         if news == nil {
             let newsEntity = News(context: context)
-            context.perform {
-                newsEntity.id = identifier
-            }
+            newsEntity.id = identifier
             news = newsEntity
         }
         

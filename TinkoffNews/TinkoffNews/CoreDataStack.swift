@@ -125,23 +125,19 @@ class CoreDataStack : CoreDataStackContextProvider {
     
     func performSave(context: NSManagedObjectContext, completionHandler: @escaping (String?) -> Void) {
         if context.hasChanges {
-            context.perform {
-                [weak self] in
-                
-                do {
-                    try context.save()
-                }
-                catch {
-                    DispatchQueue.main.async { completionHandler(error.localizedDescription) }
-                    print("Context save error: \(error)")
-                }
-                
-                if let parent = context.parent {
-                    self?.performSave(context: parent, completionHandler: completionHandler)
-                }
-                else {
-                    DispatchQueue.main.async { completionHandler(nil) }
-                }
+            do {
+                try context.save()
+            }
+            catch {
+                DispatchQueue.main.async { completionHandler(error.localizedDescription) }
+                print("Context save error: \(error)")
+            }
+            
+            if let parent = context.parent {
+                self.performSave(context: parent, completionHandler: completionHandler)
+            }
+            else {
+                DispatchQueue.main.async { completionHandler(nil) }
             }
         }
         else {

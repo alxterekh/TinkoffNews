@@ -183,8 +183,8 @@
 		119874131EF682C300FF254A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				11743B241EF6B4E600675275 /* Stack */,
 				11743B141EF6AEB100675275 /* Model */,
+				11743B241EF6B4E600675275 /* Stack */,
 				11743B131EF6AE9A00675275 /* Generated */,
 			);
 			name = CoreData;
@@ -580,7 +580,7 @@
 				114FF6AF1EF530460074ECEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		114FF6B01EF530460074ECEE /* Build configuration list for PBXNativeTarget "TinkoffNews" */ = {
 			isa = XCConfigurationList;
@@ -589,7 +589,7 @@
 				114FF6B21EF530460074ECEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

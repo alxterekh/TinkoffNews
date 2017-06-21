@@ -58,16 +58,16 @@ class NewsLoaderService {
    fileprivate  func saveFetchedNews(_ news: [NewsApiModel],
                          completionHandler: @escaping (String?) -> Void) {
         if let context = ServiceAssembly.coreDataStack.saveContext {
-            for item in news {
-                let news = News.findOrInsertNews(in: context, with: item.identifier)
-                context.perform {
+            context.perform {
+                for item in news {
+                    let news = News.findOrInsertNews(in: context, with: item.identifier)
                     news?.text = item.text
                     self.orderIndex += 1
                     news?.orderIndex = Int64(self.orderIndex)
                 }
+                
+                ServiceAssembly.coreDataStack.performSave(context: context, completionHandler: completionHandler)
             }
-            
-           ServiceAssembly.coreDataStack.performSave(context: context, completionHandler: completionHandler)
         }
     }
     
