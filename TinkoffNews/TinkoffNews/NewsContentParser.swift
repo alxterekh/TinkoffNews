@@ -10,21 +10,25 @@ import Foundation
 import SwiftyJSON
 
 struct NewsContentApiModel {
+    let identifier: String
     let content: String
 }
 
 class NewsContentParser : Parser<NewsContentApiModel> {
     fileprivate let payLoadKey = "payload"
     fileprivate let contentKey = "content"
+    fileprivate let titleKey = "title"
+    fileprivate let idKey = "id"
     
     override func parse(data: Data) -> NewsContentApiModel? {
         let json = JSON(data: data)
-        guard let content = json[payLoadKey][contentKey].string else {
-            print("No payload!")
-            return nil
+        guard let content = json[payLoadKey][contentKey].string,
+            let identifier = json[payLoadKey][titleKey][idKey].string else {
+                print("No payload!")
+                return nil
         }
         
-        return NewsContentApiModel(content: content)
+        return NewsContentApiModel(identifier: identifier, content: content)
     }
 }
 

@@ -17,7 +17,6 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
     
     var identifier: String?
     
-    fileprivate var viewsCount = 0
     fileprivate var content = ""
     
     override func draw(_ rect: CGRect) {
@@ -38,13 +37,11 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
     }
     
     func markAsViewed() {
-        viewsCount += 1
-        viewsCountLabel.text = "\(viewsCount)"
-        
         if let context = ServiceAssembly.coreDataStack.saveContext,
             let news = news {
-            news.viewsCount = Int16(viewsCount)
+            news.viewsCount += 1
             ServiceAssembly.coreDataStack.performSave(context: context) {_ in}
+            viewsCountLabel.text = "\(news.viewsCount)"
         }
     }
     

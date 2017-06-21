@@ -48,16 +48,8 @@ class NewsContentViewController: UIViewController {
                 print(error)
             }
             else {
-                guard let context = ServiceAssembly.coreDataStack.saveContext else {
-                    print("No context!")
-                    abort()
-                }
-                
-                if let news = News.performNewsFetchRequest(identifier: identifier, in: context) {
-                    self.newsContent.loadHTMLString($0!, baseURL: nil)
-                    news.content = $0
-                    ServiceAssembly.coreDataStack.performSave(context: context) { _ in}
-                }
+                self.newsContent.loadHTMLString($0!, baseURL: nil)
+
             }
         }
     }

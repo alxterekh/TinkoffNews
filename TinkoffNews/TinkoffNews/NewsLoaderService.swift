@@ -29,7 +29,7 @@ class NewsLoaderService {
             
             switch result {
             case .Success(let news):
-                NewsStorage.saveFetchedNews(news, completionHandler: completionHandler)
+                self.saveFetchedNews(news, completionHandler: completionHandler)
             case .Fail(let error):
                 completionHandler(error)
             }
@@ -43,6 +43,7 @@ class NewsLoaderService {
             DispatchQueue.main.async {
                 switch result {
                 case .Success(let content):
+                    self.saveFetchedNewsContent(content) {_ in}
                     completionHandler(content.content, nil)
                 case .Fail(let error):
                     completionHandler(nil, error)
@@ -50,4 +51,31 @@ class NewsLoaderService {
             }
         }
     }
+    
+   fileprivate  func saveFetchedNews(_ news: [NewsApiModel],
+                         completionHandler: @escaping (String?) -> Void) {
+        if let context = ServiceAssembly.coreDataStack.saveContext {
+            for item in news {
+                let news = News.findOrInsertNews(in: context, with: item.identifier)
+                context.perform {
+                    news?.text = item.text
+                }
+            }
+            
+           ServiceAssembly.coreDataStack.performSave(context: context, completionHandler: completionHandler)
+        }
+    }
+    
+    fileprivate func saveFetchedNewsContent(_ content: NewsContentApiModel,
+                                completionHandler: @escaping (String?) -> Void) {
+        if let context = ServiceAssembly.coreDataStack.saveContext,
+            let news = News.findOrInsertNews(in: context, with: content.identifier) {
+            context.perform {
+                news.content = content.content
+            }
+            ServiceAssembly.coreDataStack.performSave(context: context, completionHandler: completionHandler)
+        }
+    }
 }
+
+

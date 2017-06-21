@@ -16,7 +16,6 @@
 		11743B121EF6A8A400675275 /* NewsContentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11743B111EF6A8A400675275 /* NewsContentParser.swift */; };
 		11743B171EF6B0B100675275 /* FetchResultslControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11743B161EF6B0B100675275 /* FetchResultslControllerDelegate.swift */; };
 		11743B1B1EF6B12800675275 /* NewsContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11743B1A1EF6B12800675275 /* NewsContentViewController.swift */; };
-		11743B261EF7E99A00675275 /* NewsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11743B251EF7E99A00675275 /* NewsStorage.swift */; };
 		11743B291EF7EA2100675275 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11743B271EF7EA2100675275 /* Model.xcdatamodeld */; };
 		11743B2C1EF7EAA500675275 /* News+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11743B2A1EF7EAA500675275 /* News+CoreDataClass.swift */; };
 		11743B2D1EF7EAA500675275 /* News+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11743B2B1EF7EAA500675275 /* News+CoreDataProperties.swift */; };
@@ -48,7 +47,6 @@
 		11743B111EF6A8A400675275 /* NewsContentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsContentParser.swift; sourceTree = "<group>"; };
 		11743B161EF6B0B100675275 /* FetchResultslControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchResultslControllerDelegate.swift; sourceTree = "<group>"; };
 		11743B1A1EF6B12800675275 /* NewsContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsContentViewController.swift; sourceTree = "<group>"; };
-		11743B251EF7E99A00675275 /* NewsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsStorage.swift; sourceTree = "<group>"; };
 		11743B281EF7EA2100675275 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		11743B2A1EF7EAA500675275 /* News+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "News+CoreDataClass.swift"; path = "../News+CoreDataClass.swift"; sourceTree = "<group>"; };
 		11743B2B1EF7EAA500675275 /* News+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "News+CoreDataProperties.swift"; path = "../News+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 		11743B2E1EF8035C00675275 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				11743B251EF7E99A00675275 /* NewsStorage.swift */,
 			);
 			name = Storage;
 			sourceTree = "<group>";
@@ -413,7 +410,6 @@
 				11743B101EF6A67200675275 /* RequestURLFormatter.swift in Sources */,
 				119874091EF6828D00FF254A /* NewsHeaderListRequest.swift in Sources */,
 				119873F91EF6815E00FF254A /* NewsCell.swift in Sources */,
-				11743B261EF7E99A00675275 /* NewsStorage.swift in Sources */,
 				11743B1B1EF6B12800675275 /* NewsContentViewController.swift in Sources */,
 				1198740F1EF6828D00FF254A /* RequestsFactory.swift in Sources */,
 				1198740B1EF6828D00FF254A /* NewsLoaderService.swift in Sources */,
