@@ -30,66 +30,39 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
         }
         
         self.news = news
-        newsHeader.text = news.text
+        let kek = parseHTMLStringToString(news.text!)
+        newsHeader.text = kek
         identifier = news.id
         viewsCountLabel.text = "\(news.viewsCount)"
     }
     
     func markAsViewed() {
         if let context = ServiceAssembly.coreDataStack.saveContext,
-            let news = news {
+            let news = news,
+            let newsOnSaveContext = context.object(with: news.objectID) as? News {
             context.perform {
-                news.viewsCount += 1
+                newsOnSaveContext.viewsCount += 1
                 ServiceAssembly.coreDataStack.performSave(context: context) {_ in}
             }
             viewsCountLabel.text = "\(news.viewsCount)"
         }
     }
     
-//    func webView(_ webView: UIWebView,
-//                 shouldStartLoadWith request: URLRequest,
-//                 navigationType: UIWebViewNavigationType) -> Bool {
-//        return navigationType != .linkClicked
-//    }
-//    
-//    func webViewDidFinishLoad(_ webView: UIWebView) {
-//        let runLoop = RunLoop.current.getCFRunLoop()  
-//        CFRunLoopStop(runLoop)
-//    }
-//    
-//    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
-//        let webViewFrame = CGRect(x: 0, y: 0, width: webViewWidth(targetSize.width), height: 1)
-//        
-//        let webView = UIWebView(frame: webViewFrame)
-//        webView.delegate = self
-//        webView.translatesAutoresizingMaskIntoConstraints = false
-//        webView.isUserInteractionEnabled = false
-//        webView.loadHTMLString(content, baseURL: nil)
-//        CFRunLoopRunInMode(.defaultMode, 1, false)
-//        let result = webView.stringByEvaluatingJavaScript(from: "Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );")
-//        var fittingSize = targetSize
-//        if let result = result {
-//            fittingSize.height = totalCellHeight(with: CGFloat((result as NSString).doubleValue))
-//            newsHeader.removeFromSuperview()
-//            newsHeader = webView
-//            newsHeader.backgroundColor = UIColor.clear
-//            newsHeader.isOpaque = false
-//            
-//            self.addSubview(newsHeader)
-//            self.addConstraint(NSLayoutConstraint(item: newsHeader, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 8))
-//            self.addConstraint(NSLayoutConstraint(item: newsHeader, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 8))
-//        }
-//        
-//        return fittingSize
-//    }
-//    
-//    fileprivate func webViewWidth(_ cellWidth: CGFloat) -> CGFloat {
-//        return cellWidth - viewsCountLabel.frame.size.width - trailingViewsCountLabelToSuperview.constant
-//    }
-//    
-//    fileprivate func totalCellHeight(with newsHeaderWebViewHeight: CGFloat)  -> CGFloat{
-//        return newsHeaderWebViewHeight + 16
-//    }
+    // encodedString should = a[0]["title"] in your case
+    
+    fileprivate func parseHTMLStringToString(_ encodedString: String) -> String {
+        let encodedData = encodedString.data(using:.utf8)!
+        let attributedOptions: [String : Any] = [
+            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+            NSCharacterEncodingDocumentAttribute: NSNumber(value: String.Encoding.utf8.rawValue)
+        ]
+        
+        let attributedString = try! NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)
+
+        let decodedString = attributedString.string
+        
+        return decodedString
+    }
 }
 
 
