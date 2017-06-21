@@ -39,7 +39,9 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
     func markAsViewed() {
         if let context = ServiceAssembly.coreDataStack.saveContext,
             let news = news {
-            news.viewsCount += 1
+            context.perform {
+                news.viewsCount += 1
+            }
             ServiceAssembly.coreDataStack.performSave(context: context) {_ in}
             viewsCountLabel.text = "\(news.viewsCount)"
         }

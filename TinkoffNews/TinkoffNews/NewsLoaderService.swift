@@ -23,6 +23,7 @@ class NewsLoaderService {
     }
     
     func loadNewsHeaderList(first: Int, last: Int, completionHandler: @escaping (String?) -> Void) {
+
         let config = RequestsFactory.NewsHeaderListConfig(first: first, last: last)
         requestSender.send(config: config) {
             (result: Result<[NewsApiModel]>) in
@@ -52,6 +53,8 @@ class NewsLoaderService {
         }
     }
     
+   fileprivate var orderIndex = 0
+    
    fileprivate  func saveFetchedNews(_ news: [NewsApiModel],
                          completionHandler: @escaping (String?) -> Void) {
         if let context = ServiceAssembly.coreDataStack.saveContext {
@@ -59,6 +62,8 @@ class NewsLoaderService {
                 let news = News.findOrInsertNews(in: context, with: item.identifier)
                 context.perform {
                     news?.text = item.text
+                    self.orderIndex += 1
+                    news?.orderIndex = Int64(self.orderIndex)
                 }
             }
             
