@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NewsContentViewController: UIViewController {
     
@@ -22,17 +23,41 @@ class NewsContentViewController: UIViewController {
     }
     
     fileprivate func fetchNewsContent() {
-        guard let identifier = newsIdentifier else {
-            print("No news identifier!")
-            return
+        guard let context = ServiceAssembly.coreDataStack.mainContext else {
+            print("No context!")
+            abort()
         }
         
+        guard let identifier = newsIdentifier else {
+            print("No news identifier!")
+            abort()
+        }
+        
+        if let news = News.performNewsFetchRequest(identifier: identifier, in: context),
+            let content = news.content {
+            self.newsContent.loadHTMLString(content, baseURL: nil)
+        }
+        else {
+            loadNewsContent(for: identifier)
+        }
+    }
+    
+    fileprivate func loadNewsContent(for identifier: String) {
         newsLoaderService.loadNewsContent(newsIdentifier: identifier) {
             if let error = $1 {
                 print(error)
             }
             else {
-               self.newsContent.loadHTMLString($0!, baseURL: nil)
+                guard let context = ServiceAssembly.coreDataStack.saveContext else {
+                    print("No context!")
+                    abort()
+                }
+                
+                if let news = News.performNewsFetchRequest(identifier: identifier, in: context) {
+                    self.newsContent.loadHTMLString($0!, baseURL: nil)
+                    news.content = $0
+                    ServiceAssembly.coreDataStack.performSave(context: context) { _ in}
+                }
             }
         }
     }

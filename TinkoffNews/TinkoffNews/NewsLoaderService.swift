@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 protocol NewsLoader {
-
+    func loadNewsHeaderList(first: Int, last: Int, completionHandler: @escaping (String?) -> Void)
+    func loadNewsContent(newsIdentifier: String, completionHandler: @escaping (String? ,String?) -> Void)
 }
 
 class NewsLoaderService {

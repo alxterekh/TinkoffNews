@@ -12,9 +12,7 @@ class NewsHeaderListRequest : Requestable {
     fileprivate let baseUrl: String = "https://api.tinkoff.ru/v1/news?"
     fileprivate let firstItemIndex: Int
     fileprivate let lastItemIndex: Int
-    
-    // MARK: - Initialization
-    
+        
     init(first: Int, last: Int) {
         firstItemIndex = first
         lastItemIndex = last
@@ -23,8 +21,6 @@ class NewsHeaderListRequest : Requestable {
     fileprivate var urlString: String {
         return baseUrl + "first=\(firstItemIndex)&last=\(lastItemIndex)"
     }
-    
-    // MARK: -
     
     var urlRequest: URLRequest? { return RequestURLFormatter.formatURLString(urlString) }
 }

@@ -41,15 +41,12 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
         viewsCount += 1
         viewsCountLabel.text = "\(viewsCount)"
         
-//        if let saveContext = ServiceAssembly.coreDataStack.saveContext,
-//        let newsOnSaveContext = saveContext.object(with: news!.objectID) as? News {
-//            
-//            //newsOnSaveContext
-//            ServiceAssembly.coreDataStack.performSave(context: saveContext) {
-//                _, _ in
-//            }
+        if let context = ServiceAssembly.coreDataStack.saveContext,
+            let news = news {
+            news.viewsCount = Int16(viewsCount)
+            ServiceAssembly.coreDataStack.performSave(context: context) {_ in}
+        }
     }
-    
     
     func webView(_ webView: UIWebView,
                  shouldStartLoadWith request: URLRequest,
