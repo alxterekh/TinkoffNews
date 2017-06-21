@@ -50,8 +50,8 @@
 		11743B161EF6B0B100675275 /* FetchResultslControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchResultslControllerDelegate.swift; sourceTree = "<group>"; };
 		11743B1A1EF6B12800675275 /* NewsContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsContentViewController.swift; sourceTree = "<group>"; };
 		11743B281EF7EA2100675275 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		11743B2A1EF7EAA500675275 /* News+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "News+CoreDataClass.swift"; path = "../News+CoreDataClass.swift"; sourceTree = "<group>"; };
-		11743B2B1EF7EAA500675275 /* News+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "News+CoreDataProperties.swift"; path = "../News+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		11743B2A1EF7EAA500675275 /* News+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "News+CoreDataClass.swift"; sourceTree = "<group>"; };
+		11743B2B1EF7EAA500675275 /* News+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "News+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		119873F61EF6815E00FF254A /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		119873F71EF6815E00FF254A /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		119873F81EF6815E00FF254A /* NewsTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewModel.swift; sourceTree = "<group>"; };
@@ -85,10 +85,10 @@
 		114FF6921EF530460074ECEE = {
 			isa = PBXGroup;
 			children = (
-				114FF69D1EF530460074ECEE /* TinkoffNews */,
-				114FF69C1EF530460074ECEE /* Products */,
-				79E15774CF24DB28DF53DA69 /* Pods */,
 				9B84D95FC93B3E1A4CCE9D77 /* Frameworks */,
+				79E15774CF24DB28DF53DA69 /* Pods */,
+				114FF69C1EF530460074ECEE /* Products */,
+				114FF69D1EF530460074ECEE /* TinkoffNews */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,7 +120,7 @@
 				11743B2A1EF7EAA500675275 /* News+CoreDataClass.swift */,
 				11743B2B1EF7EAA500675275 /* News+CoreDataProperties.swift */,
 			);
-			name = Generated;
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		11743B141EF6AEB100675275 /* Model */ = {
@@ -128,7 +128,7 @@
 			children = (
 				11743B271EF7EA2100675275 /* Model.xcdatamodeld */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		11743B151EF6B0A700675275 /* Additions */ = {
@@ -137,17 +137,17 @@
 				11743B161EF6B0B100675275 /* FetchResultslControllerDelegate.swift */,
 				114DF31D1EFABD500036AD72 /* HTMLParser.swift */,
 			);
-			name = Additions;
+			path = Additions;
 			sourceTree = "<group>";
 		};
 		11743B181EF6B0E500675275 /* NewsHeaderList */ = {
 			isa = PBXGroup;
 			children = (
+				119873F61EF6815E00FF254A /* NewsCell.swift */,
 				119873F71EF6815E00FF254A /* NewsTableViewController.swift */,
 				119873F81EF6815E00FF254A /* NewsTableViewModel.swift */,
-				119873F61EF6815E00FF254A /* NewsCell.swift */,
 			);
-			name = NewsHeaderList;
+			path = NewsHeaderList;
 			sourceTree = "<group>";
 		};
 		11743B191EF6B0F900675275 /* NewsContent */ = {
@@ -155,7 +155,7 @@
 			children = (
 				11743B1A1EF6B12800675275 /* NewsContentViewController.swift */,
 			);
-			name = NewsContent;
+			path = NewsContent;
 			sourceTree = "<group>";
 		};
 		11743B241EF6B4E600675275 /* Stack */ = {
@@ -163,7 +163,7 @@
 			children = (
 				119873FC1EF6828D00FF254A /* CoreDataStack.swift */,
 			);
-			name = Stack;
+			path = Stack;
 			sourceTree = "<group>";
 		};
 		119874121EF682A300FF254A /* CoreLayer */ = {
@@ -172,58 +172,58 @@
 				119874131EF682C300FF254A /* CoreData */,
 				119874141EF682D200FF254A /* Networking */,
 			);
-			name = CoreLayer;
+			path = CoreLayer;
 			sourceTree = "<group>";
 		};
 		119874131EF682C300FF254A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				11743B131EF6AE9A00675275 /* Generated */,
 				11743B141EF6AEB100675275 /* Model */,
 				11743B241EF6B4E600675275 /* Stack */,
-				11743B131EF6AE9A00675275 /* Generated */,
 			);
-			name = CoreData;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		119874141EF682D200FF254A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				119874041EF6828D00FF254A /* RequestsFactory.swift */,
+				119874151EF682EA00FF254A /* Parsers */,
 				119874171EF6831900FF254A /* RequestSender */,
 				119874161EF682F100FF254A /* Requesters */,
-				119874151EF682EA00FF254A /* Parsers */,
+				119874041EF6828D00FF254A /* RequestsFactory.swift */,
 			);
-			name = Networking;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		119874151EF682EA00FF254A /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
-				119874011EF6828D00FF254A /* Parser.swift */,
-				119873FF1EF6828D00FF254A /* NewsHeaderListParser.swift */,
 				11743B111EF6A8A400675275 /* NewsContentParser.swift */,
+				119873FF1EF6828D00FF254A /* NewsHeaderListParser.swift */,
+				119874011EF6828D00FF254A /* Parser.swift */,
 			);
-			name = Parsers;
+			path = Parsers;
 			sourceTree = "<group>";
 		};
 		119874161EF682F100FF254A /* Requesters */ = {
 			isa = PBXGroup;
 			children = (
-				119874021EF6828D00FF254A /* Requestable.swift */,
-				119873FE1EF6828D00FF254A /* NewsHeaderListRequest.swift */,
 				11743B0D1EF6A48B00675275 /* NewsContentRequest.swift */,
+				119873FE1EF6828D00FF254A /* NewsHeaderListRequest.swift */,
 				11743B0F1EF6A67200675275 /* RequestURLFormatter.swift */,
+				119874021EF6828D00FF254A /* Requestable.swift */,
 			);
-			name = Requesters;
+			path = Requesters;
 			sourceTree = "<group>";
 		};
 		119874171EF6831900FF254A /* RequestSender */ = {
 			isa = PBXGroup;
 			children = (
-				119874051EF6828D00FF254A /* RequestTransmitter.swift */,
 				119874031EF6828D00FF254A /* RequestSender.swift */,
+				119874051EF6828D00FF254A /* RequestTransmitter.swift */,
 			);
-			name = RequestSender;
+			path = RequestSender;
 			sourceTree = "<group>";
 		};
 		119874181EF6839D00FF254A /* ServiceLayer */ = {
@@ -231,7 +231,7 @@
 			children = (
 				119874001EF6828D00FF254A /* NewsLoaderService.swift */,
 			);
-			name = ServiceLayer;
+			path = ServiceLayer;
 			sourceTree = "<group>";
 		};
 		11A1F90C1EF532350043BB84 /* PresentationLayer */ = {
@@ -242,16 +242,16 @@
 				11743B181EF6B0E500675275 /* NewsHeaderList */,
 				11A1F90F1EF5326F0043BB84 /* Storyboards */,
 			);
-			name = PresentationLayer;
+			path = PresentationLayer;
 			sourceTree = "<group>";
 		};
 		11A1F90F1EF5326F0043BB84 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				114FF6A21EF530460074ECEE /* Main.storyboard */,
 				114FF6AA1EF530460074ECEE /* LaunchScreen.storyboard */,
+				114FF6A21EF530460074ECEE /* Main.storyboard */,
 			);
-			name = Storyboards;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		79E15774CF24DB28DF53DA69 /* Pods */ = {
@@ -430,6 +430,7 @@
 				114FF6A31EF530460074ECEE /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		114FF6AA1EF530460074ECEE /* LaunchScreen.storyboard */ = {
@@ -438,6 +439,7 @@
 				114FF6AB1EF530460074ECEE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -596,8 +598,7 @@
 				11743B281EF7EA2100675275 /* Model.xcdatamodel */,
 			);
 			currentVersion = 11743B281EF7EA2100675275 /* Model.xcdatamodel */;
-			name = Model.xcdatamodeld;
-			path = ../Model.xcdatamodeld;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

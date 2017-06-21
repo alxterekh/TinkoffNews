@@ -52,7 +52,7 @@ class NewsLoaderService : NewsLoader {
         }
     }
     
-    // MARK: - Cashind recivied data
+    // MARK: - Cashing recivied data
     
     fileprivate var orderIndex = 0
     
