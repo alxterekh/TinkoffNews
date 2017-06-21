@@ -76,9 +76,9 @@ class NewsTableViewModel : NSObject, NewsListModel {
                     self.delegate?.show(error: error)
                 }
                 else {
-                    self.delegate?.hideProgressHud()
                     self.first += self.batchSize
                 }
+                self.delegate?.hideProgressHud()
                 self.dataIsLoading = false
             }
         }

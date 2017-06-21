@@ -21,6 +21,10 @@ class NewsLoaderService : NewsLoader {
     
     init(requestSender: RequestTransmitter) {
         self.requestSender = requestSender
+        clearStorage()
+    }
+    
+    fileprivate func clearStorage() {
         ServiceAssembly.coreDataStack.deleteEntities(with: "News")
     }
     
@@ -68,7 +72,6 @@ class NewsLoaderService : NewsLoader {
                     self.orderIndex += 1
                     news?.orderIndex = Int64(self.orderIndex)
                 }
-                
                 ServiceAssembly.coreDataStack.performSave(context: context, completionHandler: completionHandler)
             }
         }

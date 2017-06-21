@@ -48,6 +48,7 @@ class NewsContentViewController: UIViewController {
         newsLoaderService.loadNewsContent(newsIdentifier: identifier) {
             if let error = $1 {
                 DispatchQueue.main.async {
+                    HUD.hide(animated: true)
                     self.showError(with: error)
                 }
             }

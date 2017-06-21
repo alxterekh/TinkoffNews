@@ -126,13 +126,15 @@ class CoreDataStack : CoreDataStackContextProvider {
     
     func deleteEntities(with name: String) {
         if let context = saveContext {
-            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: name)
-            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-            do {
-                try context.execute(deleteRequest)
-                try context.save()
-            } catch {
-                print (error.localizedDescription)
+            context.performAndWait {
+                let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+                let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+                do {
+                    try context.execute(deleteRequest)
+                    try context.save()
+                } catch {
+                    print (error.localizedDescription)
+                }
             }
         }
     }

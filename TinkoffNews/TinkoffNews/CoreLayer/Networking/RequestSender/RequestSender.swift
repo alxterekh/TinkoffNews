@@ -10,7 +10,7 @@ import Foundation
 
 class RequestSender: RequestTransmitter {
     
-    fileprivate let timeout = 12
+    fileprivate let timeout = 10
     
     let session: URLSession
     
