@@ -65,11 +65,11 @@ class NewsTableViewModel : NSObject, NewsListModel {
     
     fileprivate var first = 0
     fileprivate let batchSize = 20
-    fileprivate var dataIsLodaing = false
+    fileprivate var dataIsLoading = false
         
     func fetchNewsList() {
-        if !dataIsLodaing {
-            dataIsLodaing = true
+        if !dataIsLoading {
+            dataIsLoading = true
             delegate?.showProgressHud()
             newsLoaderService.loadNewsHeaderList(first: first, last: first + batchSize) {
                 if let error = $0 {
@@ -79,12 +79,12 @@ class NewsTableViewModel : NSObject, NewsListModel {
                     self.delegate?.hideProgressHud()
                     self.first += self.batchSize
                 }
-                self.dataIsLodaing = false
+                self.dataIsLoading = false
             }
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollViewDidScrollToBottom(scrollView) {
             fetchNewsList()
         }
@@ -93,8 +93,6 @@ class NewsTableViewModel : NSObject, NewsListModel {
     fileprivate func scrollViewDidScrollToBottom(_ scrollView: UIScrollView) -> Bool {
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
         return bottomEdge >= scrollView.contentSize.height
-//        let diff = roundf(Float(scrollView.contentSize.height-scrollView.frame.size.height))
-//        return scrollView.contentOffset.y == CGFloat(diff) 
     }
 }
 

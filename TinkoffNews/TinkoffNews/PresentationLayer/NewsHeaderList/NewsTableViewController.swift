@@ -62,6 +62,5 @@ extension NewsTableViewController: NewsTableViewModelDelegate {
             self.present(alertController, animated: true, completion: nil)
         }
     }
-    
 }
 

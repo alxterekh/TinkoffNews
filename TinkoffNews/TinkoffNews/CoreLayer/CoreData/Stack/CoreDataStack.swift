@@ -12,6 +12,7 @@ import CoreData
 protocol CoreDataStackContextProvider {
     var mainContext : NSManagedObjectContext? { get }
     var saveContext : NSManagedObjectContext? { get }
+    func deleteEntities(with name: String)
     func performSave(context: NSManagedObjectContext, completionHandler: @escaping (String?) -> Void)
 }
 
@@ -122,6 +123,19 @@ class CoreDataStack : CoreDataStackContextProvider {
     }
     
     // MARK: -
+    
+    func deleteEntities(with name: String) {
+        if let context = saveContext {
+            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+            do {
+                try context.execute(deleteRequest)
+                try context.save()
+            } catch {
+                print (error.localizedDescription)
+            }
+        }
+    }
     
     func performSave(context: NSManagedObjectContext, completionHandler: @escaping (String?) -> Void) {
         if context.hasChanges {

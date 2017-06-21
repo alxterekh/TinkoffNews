@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 protocol NewsLoader {
     func loadNewsHeaderList(first: Int, last: Int, completionHandler: @escaping (String?) -> Void)
@@ -20,6 +21,7 @@ class NewsLoaderService : NewsLoader {
     
     init(requestSender: RequestTransmitter) {
         self.requestSender = requestSender
+        ServiceAssembly.coreDataStack.deleteEntities(with: "News")
     }
     
     func loadNewsHeaderList(first: Int, last: Int, completionHandler: @escaping (String?) -> Void) {
@@ -62,7 +64,7 @@ class NewsLoaderService : NewsLoader {
             context.perform {
                 for item in news {
                     let news = News.findOrInsertNews(in: context, with: item.identifier)
-                    news?.text = item.text
+                    news?.text = HTMLParser.parseHTMLStringToString(item.text)  
                     self.orderIndex += 1
                     news?.orderIndex = Int64(self.orderIndex)
                 }

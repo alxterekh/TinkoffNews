@@ -24,15 +24,14 @@ class NewsCell : UITableViewCell, UIWebViewDelegate, IdentifiableNewsCell {
     fileprivate var news: News?
     
     func configure(with news: News) {
-        guard let text = news.text,
-        let headerText = HTMLParser.parseHTMLStringToString(text) else {
+        guard let text = news.text else {
             print("No news text")
             return
         }
         
         self.news = news
         identifier = news.id
-        newsHeaderLabel.text = headerText
+        newsHeaderLabel.text = text
         viewsCountLabel.text = "\(news.viewsCount)"
     }
     
