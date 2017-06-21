@@ -20,7 +20,7 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
         setup()
     }
 
-    fileprivate let estimatedConversationCellRowHeight: CGFloat = 44
+    fileprivate let estimatedConversationCellRowHeight: CGFloat = 1000
     
     fileprivate func setup() {
         tableView.estimatedRowHeight = estimatedConversationCellRowHeight

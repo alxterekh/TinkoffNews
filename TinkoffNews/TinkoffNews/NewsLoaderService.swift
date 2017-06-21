@@ -77,8 +77,8 @@ class NewsLoaderService {
             let news = News.findOrInsertNews(in: context, with: content.identifier) {
             context.perform {
                 news.content = content.content
+                ServiceAssembly.coreDataStack.performSave(context: context, completionHandler: completionHandler)
             }
-            ServiceAssembly.coreDataStack.performSave(context: context, completionHandler: completionHandler)
         }
     }
 }
