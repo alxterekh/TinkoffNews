@@ -24,12 +24,14 @@ class NewsLoaderService {
     
     func loadNewsHeaderList(first: Int, last: Int, completionHandler: @escaping (String?) -> Void) {
 
+        print("request sent")
         let config = RequestsFactory.NewsHeaderListConfig(first: first, last: last)
         requestSender.send(config: config) {
             (result: Result<[NewsApiModel]>) in
             
             switch result {
             case .Success(let news):
+                print("data recivied")
                 self.saveFetchedNews(news, completionHandler: completionHandler)
             case .Fail(let error):
                 completionHandler(error)
@@ -44,8 +46,10 @@ class NewsLoaderService {
             DispatchQueue.main.async {
                 switch result {
                 case .Success(let content):
-                    self.saveFetchedNewsContent(content) {_ in}
-                    completionHandler(content.content, nil)
+                    self.saveFetchedNewsContent(content) {_ in
+                        completionHandler(content.content, nil)
+                    }
+                    
                 case .Fail(let error):
                     completionHandler(nil, error)
                 }

@@ -76,6 +76,7 @@ class NewsTableViewModel : NSObject {
                     self.delegate?.show(error: error)
                 }
                 else {
+                    print("data saved")
                     self.delegate?.handleSuccessfulFetchingNews()
                     self.first += self.batchSize
                 }
