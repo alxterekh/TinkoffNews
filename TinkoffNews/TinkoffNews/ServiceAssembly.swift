@@ -13,7 +13,7 @@ class ServiceAssembly {
     
     static let coreDataStack = CoreDataStack()
     
-    static var newsLoaderService = { () -> NewsLoaderService in
+    static var newsLoaderService = { () -> NewsLoader in
         let requestSender = RequestSender()
         
         return NewsLoaderService(requestSender: requestSender)

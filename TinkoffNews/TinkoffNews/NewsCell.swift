@@ -9,30 +9,30 @@
 import Foundation
 import UIKit
 
-class NewsCell : UITableViewCell, UIWebViewDelegate {
+protocol IdentifiableNewsCell {
+    var identifier: String? { get }
+    func configure(with news: News)
+    func markAsViewed()
+}
+
+class NewsCell : UITableViewCell, UIWebViewDelegate, IdentifiableNewsCell {
     
-    @IBOutlet fileprivate weak var newsHeader: UILabel!
+    @IBOutlet fileprivate weak var newsHeaderLabel: UILabel!
     @IBOutlet fileprivate weak var viewsCountLabel: UILabel!
-    @IBOutlet weak var trailingViewsCountLabelToSuperview: NSLayoutConstraint!
     
-    var identifier: String?
-    
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-    }
-    
+    private(set) var identifier: String?
     fileprivate var news: News?
     
     func configure(with news: News) {
-        guard let text = news.text else {
-            print("no text")
+        guard let text = news.text,
+        let headerText = HTMLParser.parseHTMLStringToString(text) else {
+            print("No news text")
             return
         }
         
         self.news = news
-        let kek = parseHTMLStringToString(news.text!)
-        newsHeader.text = kek
         identifier = news.id
+        newsHeaderLabel.text = headerText
         viewsCountLabel.text = "\(news.viewsCount)"
     }
     
@@ -47,24 +47,6 @@ class NewsCell : UITableViewCell, UIWebViewDelegate {
             viewsCountLabel.text = "\(news.viewsCount)"
         }
     }
-    
-    // encodedString should = a[0]["title"] in your case
-    
-    fileprivate func parseHTMLStringToString(_ encodedString: String) -> String {
-        let encodedData = encodedString.data(using:.utf8)!
-        let attributedOptions: [String : Any] = [
-            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-            NSCharacterEncodingDocumentAttribute: NSNumber(value: String.Encoding.utf8.rawValue)
-        ]
-        
-        let attributedString = try! NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)
-
-        let decodedString = attributedString.string
-        
-        return decodedString
-    }
 }
-
-
 
 

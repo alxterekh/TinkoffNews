@@ -55,8 +55,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="newsHeader" destination="LAB-pu-O2k" id="nmw-Tl-5ti"/>
-                                            <outlet property="trailingViewsCountLabelToSuperview" destination="iuM-vy-1yd" id="9Ny-en-iZa"/>
+                                            <outlet property="newsHeaderLabel" destination="LAB-pu-O2k" id="cOw-sF-KGh"/>
                                             <outlet property="viewsCountLabel" destination="pfp-Zy-2sF" id="nFb-6X-Rb7"/>
                                             <segue destination="4Sh-ur-GPa" kind="show" identifier="NewsContent" id="D4t-oT-uW8"/>
                                         </connections>

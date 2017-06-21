@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import PKHUD
 
 class NewsContentViewController: UIViewController {
     
@@ -19,10 +20,10 @@ class NewsContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchNewsContent()
+        showNewsContent()
     }
     
-    fileprivate func fetchNewsContent() {
+    fileprivate func showNewsContent() {
         guard let context = ServiceAssembly.coreDataStack.mainContext else {
             print("No context!")
             abort()
@@ -43,13 +44,18 @@ class NewsContentViewController: UIViewController {
     }
     
     fileprivate func loadNewsContent(for identifier: String) {
+        HUD.show(.progress, onView: self.view)
         newsLoaderService.loadNewsContent(newsIdentifier: identifier) {
             if let error = $1 {
-                print(error)
+                DispatchQueue.main.async {
+                    HUD.flash(.labeledError(title: error, subtitle: nil), onView: self.view)
+                }
             }
-            else {
-                self.newsContent.loadHTMLString($0!, baseURL: nil)
-
+            else if let content = $0 {
+                DispatchQueue.main.async {
+                    self.newsContent.loadHTMLString(content, baseURL: nil)
+                    HUD.hide(animated: true)
+                }
             }
         }
     }

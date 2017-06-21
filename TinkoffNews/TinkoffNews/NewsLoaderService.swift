@@ -14,7 +14,7 @@ protocol NewsLoader {
     func loadNewsContent(newsIdentifier: String, completionHandler: @escaping (String? ,String?) -> Void)
 }
 
-class NewsLoaderService {
+class NewsLoaderService : NewsLoader {
     
     fileprivate let requestSender: RequestTransmitter
     
@@ -23,15 +23,12 @@ class NewsLoaderService {
     }
     
     func loadNewsHeaderList(first: Int, last: Int, completionHandler: @escaping (String?) -> Void) {
-
-        print("request sent")
         let config = RequestsFactory.NewsHeaderListConfig(first: first, last: last)
         requestSender.send(config: config) {
             (result: Result<[NewsApiModel]>) in
             
             switch result {
             case .Success(let news):
-                print("data recivied")
                 self.saveFetchedNews(news, completionHandler: completionHandler)
             case .Fail(let error):
                 completionHandler(error)
@@ -43,23 +40,23 @@ class NewsLoaderService {
         let config = RequestsFactory.NewsContentConfig(for: newsIdentifier)
         requestSender.send(config: config) {
             (result: Result<NewsContentApiModel>) in
-            DispatchQueue.main.async {
-                switch result {
-                case .Success(let content):
-                    self.saveFetchedNewsContent(content) {_ in
-                        completionHandler(content.content, nil)
-                    }
-                    
-                case .Fail(let error):
-                    completionHandler(nil, error)
+            
+            switch result {
+            case .Success(let content):
+                self.saveFetchedNewsContent(content) {_ in
+                    completionHandler(content.content, nil)
                 }
+            case .Fail(let error):
+                completionHandler(nil, error)
             }
         }
     }
     
-   fileprivate var orderIndex = 0
+    // MARK: - Cashind recivied data
     
-   fileprivate  func saveFetchedNews(_ news: [NewsApiModel],
+    fileprivate var orderIndex = 0
+    
+    fileprivate  func saveFetchedNews(_ news: [NewsApiModel],
                          completionHandler: @escaping (String?) -> Void) {
         if let context = ServiceAssembly.coreDataStack.saveContext {
             context.perform {

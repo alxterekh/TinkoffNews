@@ -9,7 +9,7 @@
 import UIKit
 import PKHUD
 
-class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
+class NewsTableViewController: UIViewController {
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     
@@ -20,7 +20,7 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
         setup()
     }
 
-    fileprivate let estimatedConversationCellRowHeight: CGFloat = 500
+    fileprivate let estimatedConversationCellRowHeight: CGFloat = 44
     
     fileprivate func setup() {
         tableView.estimatedRowHeight = estimatedConversationCellRowHeight
@@ -31,13 +31,24 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
         newsTableViewModel?.fetchNewsList()
     }
     
-    func handleSuccessfulFetchingNews() {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NewsContent",
+            let vc = segue.destination as? NewsContentViewController,
+            let sender = sender as? IdentifiableNewsCell {
+            sender.markAsViewed()
+            vc.newsIdentifier = sender.identifier
+        }
+    }
+}
+
+extension NewsTableViewController: NewsTableViewModelDelegate {
+    func hideProgressHud() {
         DispatchQueue.main.async {
             HUD.hide(animated: true)
         }
     }
     
-    func kek() {
+    func showProgressHud() {
         DispatchQueue.main.async {
             HUD.show(.progress, onView: self.view)
         }
@@ -46,15 +57,6 @@ class NewsTableViewController: UIViewController, NewsTableViewModelDelegate {
     func show(error message: String) {
         DispatchQueue.main.async {
             HUD.flash(.labeledError(title: message, subtitle: nil), onView: self.view)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "NewsContent",
-            let vc = segue.destination as? NewsContentViewController,
-            let sender = sender as? NewsCell {
-            sender.markAsViewed()
-            vc.newsIdentifier = sender.identifier
         }
     }
 }

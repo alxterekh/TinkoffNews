@@ -12,27 +12,23 @@ import CoreData
 
 protocol NewsListModel: class {
     weak var delegate: NewsTableViewModelDelegate? { get set }
-    func fetchImagesList()
+    func fetchNewsList()
 }
 
 protocol NewsTableViewModelDelegate: class {
     func show(error message: String)
-    func handleSuccessfulFetchingNews()
-    func kek()
+    func hideProgressHud()
+    func showProgressHud()
 }
 
-class NewsTableViewModel : NSObject {
-
+class NewsTableViewModel : NSObject, NewsListModel {
     fileprivate let newsCellId = "newsCell"
     fileprivate let tableView: UITableView
     fileprivate var fetchResultslControllerDelegate: FetchResultslControllerDelegate?
     fileprivate let fetchResultsController: NSFetchedResultsController<News>
-    
-    let newsLoaderService: NewsLoaderService
+    fileprivate let newsLoaderService: NewsLoader
     
     weak var delegate: NewsTableViewModelDelegate?
-    
-    fileprivate let batchSize = 20
     
     init(with tableView: UITableView) {
         self.tableView = tableView
@@ -65,24 +61,25 @@ class NewsTableViewModel : NSObject {
         }
     }
     
-    fileprivate var first = 0
+    // MARK: - Fetching news
     
-    fileprivate var flag = true
+    fileprivate var first = 0
+    fileprivate let batchSize = 20
+    fileprivate var dataIsLodaing = false
         
     func fetchNewsList() {
-        if flag {
-            flag = false
-            delegate?.kek()
+        if !dataIsLodaing {
+            dataIsLodaing = true
+            delegate?.showProgressHud()
             newsLoaderService.loadNewsHeaderList(first: first, last: first + batchSize) {
                 if let error = $0 {
                     self.delegate?.show(error: error)
                 }
                 else {
-                    print("data saved")
-                    self.delegate?.handleSuccessfulFetchingNews()
+                    self.delegate?.hideProgressHud()
                     self.first += self.batchSize
                 }
-                self.flag = true
+                self.dataIsLodaing = false
             }
         }
     }
@@ -94,8 +91,10 @@ class NewsTableViewModel : NSObject {
     }
     
     fileprivate func scrollViewDidScrollToBottom(_ scrollView: UIScrollView) -> Bool {
-        let diff = roundf(Float(scrollView.contentSize.height-scrollView.frame.size.height))
-        return scrollView.contentOffset.y == CGFloat(diff) 
+        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
+        return bottomEdge >= scrollView.contentSize.height
+//        let diff = roundf(Float(scrollView.contentSize.height-scrollView.frame.size.height))
+//        return scrollView.contentOffset.y == CGFloat(diff) 
     }
 }
 

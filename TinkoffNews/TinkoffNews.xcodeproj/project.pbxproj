@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114DF31E1EFABD500036AD72 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DF31D1EFABD500036AD72 /* HTMLParser.swift */; };
 		114FF69F1EF530460074ECEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114FF69E1EF530460074ECEE /* AppDelegate.swift */; };
 		114FF6A41EF530460074ECEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 114FF6A21EF530460074ECEE /* Main.storyboard */; };
 		114FF6A91EF530460074ECEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 114FF6A81EF530460074ECEE /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		114DF31D1EFABD500036AD72 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		114FF69B1EF530460074ECEE /* TinkoffNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		114FF69E1EF530460074ECEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		114FF6A31EF530460074ECEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				11743B161EF6B0B100675275 /* FetchResultslControllerDelegate.swift */,
+				114DF31D1EFABD500036AD72 /* HTMLParser.swift */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -163,17 +166,9 @@
 			name = Stack;
 			sourceTree = "<group>";
 		};
-		11743B2E1EF8035C00675275 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Storage;
-			sourceTree = "<group>";
-		};
 		119874121EF682A300FF254A /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
-				11743B2E1EF8035C00675275 /* Storage */,
 				119874131EF682C300FF254A /* CoreData */,
 				119874141EF682D200FF254A /* Networking */,
 			);
@@ -421,6 +416,7 @@
 				11743B0E1EF6A48B00675275 /* NewsContentRequest.swift in Sources */,
 				114FF69F1EF530460074ECEE /* AppDelegate.swift in Sources */,
 				11743B2D1EF7EAA500675275 /* News+CoreDataProperties.swift in Sources */,
+				114DF31E1EFABD500036AD72 /* HTMLParser.swift in Sources */,
 				119873FB1EF6815E00FF254A /* NewsTableViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
